@@ -129,22 +129,23 @@ class PocketEconomy extends PluginBase implements Listener
      *
      * @return bool
      */
-    public function createAccount($player, $defaultMoney = false, bool $force = false): bool
+    public function createAccount($player, $defaultMoney = 0.0, bool $force = false): bool
     {
-        if ($player instanceof Player) {
-            $player = $player->getName();
-        }
+       if ($player instanceof Player) {
+        $player = $player->getName();
+    }
         $player = strtolower($player);
 
-        if (!$this->provider->accountExists($player)) {
-            $defaultMoney = ($defaultMoney === false) ? $this->getConfig()->get("default-money") : $defaultMoney;
+       if (!$this->provider->accountExists($player)) {
+          $defaultMoney = ($defaultMoney === 0.0) ? $this->getConfig()->get("default-money") : $defaultMoney;
 
-            $ev = new CreateAccountEvent($this, $player, $defaultMoney, "none");
-            $ev->call();
-            if (!$ev->isCancelled() or $force === true) {
-                $this->provider->createAccount($player, $ev->getDefaultMoney());
-            }
+        $ev = new CreateAccountEvent($this, $player, $defaultMoney, "none");
+        $ev->call();
+        if (!$ev->isCancelled() || $force === true) {
+            $this->provider->createAccount($player, $ev->getDefaultMoney());
+            return true; // Assuming account creation success returns true
         }
+    }
         return false;
     }
 
