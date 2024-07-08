@@ -27,12 +27,9 @@ use NurAzliYT\PocketEconomy\task\MySQLPingTask;
 use pocketmine\player\Player;
 
 class MySQLProvider implements Provider{
-	/**
-	 * @var \mysqli
-	 */
+	
 	private $db;
 
-	/** @var PocketEconomy */
 	public function __construct(private PocketEconomy $plugin){
 		$this->plugin = $plugin;
 	}
@@ -61,10 +58,6 @@ class MySQLProvider implements Provider{
 		$this->plugin->getScheduler()->scheduleRepeatingTask(new MySQLPingTask($this->plugin, $this->db), 600);
 	}
 
-	/**
-	 * @param \pocketmine\player\Player|string $player
-	 * @return bool
-	 */
 	public function accountExists($player){
 		if($player instanceof Player){
 			$player = $player->getName();
@@ -75,11 +68,6 @@ class MySQLProvider implements Provider{
 		return $result->num_rows > 0 ? true:false;
 	}
 
-	/**
-	 * @param \pocketmine\player\Player|string $player
-	 * @param float $defaultMoney
-	 * @return bool
-	 */
 	public function createAccount($player, $defaultMoney = 1000.0){
 		if($player instanceof Player){
 			$player = $player->getName();
@@ -93,10 +81,6 @@ class MySQLProvider implements Provider{
 		return false;
 	}
 
-	/**
-	 * @param \pocketmine\player\Player|string $player
-	 * @return bool
-	 */
 	public function removeAccount($player){
 		if($player instanceof Player){
 			$player = $player->getName();
@@ -107,10 +91,6 @@ class MySQLProvider implements Provider{
 		return false;
 	}
 
-	/**
-	 * @param string $player
-	 * @return float|bool
-	 */
 	public function getMoney($player){
 		if($player instanceof Player){
 			$player = $player->getName();
@@ -123,11 +103,6 @@ class MySQLProvider implements Provider{
 		return $ret;
 	}
 
-	/**
-	 * @param \pocketmine\player\Player|string $player
-	 * @param float $amount
-	 * @return bool
-	 */
 	public function setMoney($player, $amount){
 		if($player instanceof Player){
 			$player = $player->getName();
@@ -139,11 +114,6 @@ class MySQLProvider implements Provider{
 		return $this->db->query("UPDATE user_money SET money = $amount WHERE username='".$this->db->real_escape_string($player)."'");
 	}
 
-	/**
-	 * @param \pocketmine\player\Player|string $player
-	 * @param float $amount
-	 * @return bool
-	 */
 	public function addMoney($player, $amount){
 		if($player instanceof Player){
 			$player = $player->getName();
@@ -155,11 +125,6 @@ class MySQLProvider implements Provider{
 		return $this->db->query("UPDATE user_money SET money = money + $amount WHERE username='".$this->db->real_escape_string($player)."'");
 	}
 
-	/**
-	 * @param \pocketmine\player\Player|string $player
-	 * @param float $amount
-	 * @return bool
-	 */
 	public function reduceMoney($player, $amount){
 		if($player instanceof Player){
 			$player = $player->getName();
@@ -171,9 +136,6 @@ class MySQLProvider implements Provider{
 		return $this->db->query("UPDATE user_money SET money = money - $amount WHERE username='".$this->db->real_escape_string($player)."'");
 	}
 
-	/**
-	 * @return array
-	 */
 	public function getAll(){
 		$res = $this->db->query("SELECT * FROM user_money");
 
@@ -187,9 +149,6 @@ class MySQLProvider implements Provider{
 		return $ret;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getName(){
 		return "MySQL";
 	}
