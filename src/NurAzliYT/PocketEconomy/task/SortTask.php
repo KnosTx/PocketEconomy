@@ -33,14 +33,6 @@ class SortTask extends AsyncTask
 
     private $topList;
 
-    /**
-     * @param string $player
-     * @param array $moneyData
-     * @param bool $addOp
-     * @param int $page
-     * @param array $ops
-     * @param array $banList
-     */
     public function __construct(private string $sender, private array $moneyData, private bool $addOp, private int $page, private array $ops, private array $banList) {}
 
     public function onRun(): void
