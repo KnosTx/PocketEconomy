@@ -50,11 +50,11 @@ class MySQLProvider implements Provider {
         return $result->num_rows > 0;
     }
 
-    public function createAccount($player, float $defaultMoney = 1000.0): bool {
+    public function createAccount($player, $defaultMoney = 1000.0): bool {
         $player = $this->getPlayerName($player);
 
         if (!$this->accountExists($player)) {
-            $this->db->query("INSERT INTO user_money (username, money) VALUES ('".$this->db->real_escape_string($player)."', $defaultMoney);");
+            $this->db->query("INSERT INTO user_money (username, money) VALUES ('".$this->db->real_escape_string($player)."', ".(float)$defaultMoney.");");
             return true;
         }
         return false;
