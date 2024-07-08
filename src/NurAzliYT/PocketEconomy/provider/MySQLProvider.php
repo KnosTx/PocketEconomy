@@ -4,6 +4,7 @@ namespace NurAzliYT\PocketEconomy\provider;
 
 use NurAzliYT\PocketEconomy\PocketEconomy;
 use NurAzliYT\PocketEconomy\task\MySQLPingTask;
+use NurAzliYT\PocketEconomy\PocketEconomy;
 use pocketmine\player\Player;
 
 class MySQLProvider implements Provider {
