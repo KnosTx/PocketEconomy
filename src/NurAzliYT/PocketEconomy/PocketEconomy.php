@@ -448,15 +448,15 @@ class PocketEconomy extends PluginBase implements Listener
         $map = $this->getServer()->getCommandMap();
 
         $commands = [
-            "mymoney" => "\\NurAzliYT\\pocketeconomy\\command\\MyMoneyCommand",
-            "topmoney" => "\\NurAzliYT\\pocketeconomy\\command\\TopMoneyCommand",
-            "setmoney" => "\\NurAzliYT\\pocketeconomy\\command\\SetMoneyCommand",
-            "seemoney" => "\\NurAzliYT\\pocketeconomy\\command\\SeeMoneyCommand",
-            "givemoney" => "\\NurAzliYT\\pocketeconomy\\command\\GiveMoneyCommand",
-            "takemoney" => "\\NurAzliYT\\pocketeconomy\\command\\TakeMoneyCommand",
-            "pay" => "\\NurAzliYT\\pocketeconomy\\command\\PayCommand",
-            "setlang" => "\\NurAzliYT\\pocketeconomy\\command\\SetLangCommand",
-            "mystatus" => "\\NurAzliYT\\pocketeconomy\\command\\MyStatusCommand"
+            "mymoney" => "\\NurAzliYT\\PocketEconomy\\command\\MyMoneyCommand",
+            "topmoney" => "\\NurAzliYT\\PocketEconomy\\command\\TopMoneyCommand",
+            "setmoney" => "\\NurAzliYT\\PocketEconomy\\command\\SetMoneyCommand",
+            "seemoney" => "\\NurAzliYT\\PocketEconomy\\command\\SeeMoneyCommand",
+            "givemoney" => "\\NurAzliYT\\PocketEconomy\\command\\GiveMoneyCommand",
+            "takemoney" => "\\NurAzliYT\\PocketEconomy\\command\\TakeMoneyCommand",
+            "pay" => "\\NurAzliYT\\PocketEconomy\\command\\PayCommand",
+            "setlang" => "\\NurAzliYT\\PocketEconomy\\command\\SetLangCommand",
+            "mystatus" => "\\NurAzliYT\\PocketEconomy\\command\\MyStatusCommand"
         ];
         foreach ($commands as $cmd => $class) {
             $map->register("pocketeconomy", new $class($this));
