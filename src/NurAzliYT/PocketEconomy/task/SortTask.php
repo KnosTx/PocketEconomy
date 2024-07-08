@@ -1,23 +1,5 @@
 <?php
 
-/*
- * EconomyS, the massive economy plugin with many features for PocketMine-MP
- * Copyright (C) 2013-2017  onebone <jyc00410@gmail.com>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 namespace NurAzliYT\PocketEconomy\task;
 
 use pocketmine\scheduler\AsyncTask;
@@ -28,12 +10,17 @@ use NurAzliYT\PocketEconomy\PocketEconomy;
 
 class SortTask extends AsyncTask
 {
-
     private $max = 0;
-
     private $topList;
 
-    public function __construct(private string $sender, private array $moneyData, private bool $addOp, private int $page, private array $ops, private array $banList) {}
+    public function __construct(
+        private string $sender, 
+        private array $moneyData, 
+        private bool $addOp, 
+        private int $page, 
+        private array $ops, 
+        private array $banList
+    ) {}
 
     public function onRun(): void
     {
@@ -71,7 +58,8 @@ class SortTask extends AsyncTask
     public function onCompletion(): void
     {
         $server = Server::getInstance();
-        if ($this->sender === "CONSOLE" or ($player = $server->getPlayerExact($this->sender)) instanceof Player) { // TODO: Rcon
+        $player = null;
+        if ($this->sender === "CONSOLE" || ($player = $server->getPlayerExact($this->sender)) instanceof Player) {
             $plugin = PocketEconomy::getInstance();
 
             $output = ($plugin->getMessage("topmoney-tag", [$this->page, $this->max], $this->sender) . "\n");
@@ -84,7 +72,7 @@ class SortTask extends AsyncTask
 
             if ($this->sender === "CONSOLE") {
                 $plugin->getLogger()->info($output);
-            } else {
+            } elseif ($player !== null) {
                 $player->sendMessage($output);
             }
         }
