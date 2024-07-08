@@ -42,8 +42,8 @@ use NurAzliYT\PocketEconomy\task\SaveTask;
 
 class PocketEconomy extends PluginBase implements Listener
 {
-    const API_VERSION = 3;
-    const PACKAGE_VERSION = "5.7";
+    const API_VERSION = 5;
+    const PACKAGE_VERSION = "1.0";
 
     const RET_NO_ACCOUNT = -3;
     const RET_CANCELLED = -2;
@@ -366,6 +366,7 @@ class PocketEconomy extends PluginBase implements Listener
         if (!$this->provider->accountExists($player)) {
             $this->getLogger()->debug("Account of '" . $player->getName() . "' is not found. Creating account...");
             $this->createAccount($player, false, true);
+            $this->langList();
         }
     }
 
