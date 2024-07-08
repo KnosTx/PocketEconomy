@@ -91,17 +91,19 @@ class MySQLProvider implements Provider{
 		return false;
 	}
 
-	public function getMoney($player){
-		if($player instanceof Player){
-			$player = $player->getName();
-		}
-		$player = strtolower($player);
-
-		$res = $this->db->query("SELECT money FROM user_money WHERE username='".$this->db->real_escape_string($player)."'");
-		$ret = $res->fetch_array()[0] ?? false;
-		$res->free();
-		return $ret;
+	public function getMoney($player): float
+        {
+                if ($player instanceof Player) {
+                         $player = $player->getName();    
 	}
+                $player = strtolower($player);
+
+                $res = $this->db->query("SELECT money FROM user_money WHERE username='".$this->db->real_escape_string($player)."'");
+                $ret = $res->fetch_array()[0] ?? false;
+                $res->free();
+
+                return $ret !== false ? (float) $ret : 0.0;
+        }
 
 	public function setMoney($player, $amount){
 		if($player instanceof Player){
