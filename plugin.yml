@@ -1,0 +1,34 @@
+name: PocketEconomy
+main: NurAzliYT\PocketEconomy\PocketEconomy
+api: 5.0.0
+version: 1..0
+author: NurAzliYT
+
+permissions:
+ pocketeconomy.command.setmoney:
+  default: op
+  description: Allows to set player's money
+ pocketeconomy.command.mymoney:
+  description: Allows player to see his/her money
+  default: true
+ pocketeconomy.command.givemoney:
+  description: Allows player to give money to others
+  default: op
+ pocketeconomy.command.pay:
+  description: Allows player to pay to someone
+  default: true
+ pocketeconomy.command.seemoney:
+  description: Allows player to see others' money
+  default: true
+ pocketeconomy.command.setlang:
+  description: Allows player to set his/her language
+  default: true
+ pocketeconomy.command.topmoney:
+  description: Allows player to see top money list
+  default: true
+ pocketeconomy.command.mystatus:
+  description: Allows player to see his/her financial status
+  default: true
+ pocketeconomy.command.takemoney:
+  description: Allows player to take money from others
+  default: op
