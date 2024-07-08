@@ -4,7 +4,6 @@ namespace NurAzliYT\PocketEconomy\provider;
 
 use NurAzliYT\PocketEconomy\PocketEconomy;
 use NurAzliYT\PocketEconomy\task\MySQLPingTask;
-use NurAzliYT\PocketEconomy\PocketEconomy;
 use pocketmine\player\Player;
 
 class MySQLProvider implements Provider {
@@ -115,9 +114,9 @@ class MySQLProvider implements Provider {
         return "MySQL";
     }
 
-    public function save() {}
+    public function save(): void {}
 
-    public function close() {
+    public function close(): void {
         if ($this->db instanceof \mysqli) {
             $this->db->close();
         }
