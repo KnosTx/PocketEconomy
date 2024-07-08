@@ -57,6 +57,10 @@ class PocketEconomy extends PluginBase implements Listener
     ];
     private $lang = [], $playerLang = [];
 
+    public function getLangList() {
+        return $this->langList;
+    }
+
     /**
      * @param string $command
      * @param string|bool $lang
